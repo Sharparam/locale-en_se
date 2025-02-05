@@ -1,6 +1,7 @@
 {
   lib,
   glibcLocales,
+  ...
 }:
 glibcLocales.overrideAttrs (
   final: prev: {

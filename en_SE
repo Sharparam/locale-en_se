@@ -58,73 +58,24 @@ category "i18n:2012";LC_MEASUREMENT
 END LC_IDENTIFICATION
 
 LC_COLLATE
-copy "iso14651_t1"
+% copy "iso14651_t1"
+copy "sv_SE"
 END LC_COLLATE
 
 LC_CTYPE
-copy "en_GB"
+copy "sv_SE"
 END LC_CTYPE
 
 LC_MONETARY
-int_curr_symbol      "SEK "
-currency_symbol      "kr"
-mon_decimal_point    "."
-mon_thousands_sep    " "
-mon_grouping         3;3
-positive_sign        ""
-negative_sign        "-"
-int_frac_digits      2
-frac_digits          2
-p_cs_precedes        1
-p_sep_by_space       0
-n_cs_precedes        1
-n_sep_by_space       0
-p_sign_posn          1
-n_sign_posn          1
+copy "sv_SE"
 END LC_MONETARY
 
 LC_NUMERIC
-decimal_point        "."
-thousands_sep        " "
-grouping             3
+copy "sv_SE"
 END LC_NUMERIC
 
 LC_TIME
-abday    "Sun";"Mon";"Tue";"Wed";"Thu";"Fri";"Sat"
-day      "Sunday";/
-	 "Monday";/
-	 "Tuesday";/
-	 "Wednesday";/
-	 "Thursday";/
-	 "Friday";/
-	 "Saturday"
-abmon    "Jan";"Feb";/
-	 "Mar";"Apr";/
-	 "May";"Jun";/
-	 "Jul";"Aug";/
-	 "Sep";"Oct";/
-	 "Nov";"Dec"
-mon      "January";/
-	 "February";/
-	 "March";/
-	 "April";/
-	 "May";/
-	 "June";/
-	 "July";/
-	 "August";/
-	 "September";/
-	 "October";/
-	 "November";/
-	 "December"
-% date formats following ISO 8601-1988
-d_t_fmt  "%Y-%m-%dT%T %Z"
-date_fmt "%Y-%m-%dT%T %Z"
-d_fmt    "%Y-%m-%d"
-t_fmt    "%T"
-am_pm    "";""
-t_fmt_ampm  ""
-week 7;19971130;4
-first_weekday 2
+copy "en_DK"
 END LC_TIME
 
 LC_MESSAGES
@@ -152,7 +103,7 @@ copy "i18n"
 END LC_MEASUREMENT
 
 LC_NAME
-name_fmt "%d%t%g%t%m%t%f"
+copy "sv_SE"
 END LC_NAME
 
 LC_ADDRESS

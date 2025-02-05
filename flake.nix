@@ -9,7 +9,8 @@
     self,
     nixpkgs,
   }: let
-    supportedSystems = ["x86_64-linux" "aarch64-linux"];
+    inherit (nixpkgs) lib;
+    supportedSystems = lib.systems.flakeExposed;
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
   in {
     formatter = forAllSystems (system: let

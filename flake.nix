@@ -20,5 +20,7 @@
 
     # probably not a good idea to use this but im not your mom
     overlays.default = import ./overlay.nix;
+
+    nixosModules.default = import ./module.nix;
   };
 }

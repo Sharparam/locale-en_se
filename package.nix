@@ -2,8 +2,11 @@
   lib,
   glibcLocales,
   ...
-}:
-glibcLocales.overrideAttrs (
+} @ args:
+(
+  glibcLocales.override (lib.removeAttrs args ["glibcLocales"])
+)
+.overrideAttrs (
   final: prev: {
     preBuild =
       ''

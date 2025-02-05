@@ -5,28 +5,32 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
   };
 
-  outputs = { self, nixpkgs }:
-  let
-    version = "1.0.0";
-    supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
+  outputs = {
+    self,
+    nixpkgs,
+  }: let
+    inherit (nixpkgs) lib;
+    supportedSystems = lib.systems.flakeExposed;
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
   in {
-    packages = forAllSystems (system: let pkgs = import nixpkgs { inherit system; }; in {
-      locale-en_se = pkgs.stdenv.mkDerivation {
-        pname = "locale-en_se";
-        inherit version;
+    formatter = forAllSystems (system: let
+      nixpkgs' = nixpkgs.legacyPackages.${system};
+    in
+      nixpkgs'.writeShellScriptBin "formatter" ''
+        ${nixpkgs'.alejandra}/bin/alejandra .
+      '');
 
-        src = ./.;
-
-        installPhase = ''
-          runHook preInstall
-          mkdir -p "$out/share/i18n/locales"
-          cp -v "$src/en_SE" "$out/share/i18n/locales"
-          runHook postInstall
-        '';
-      };
+    packages = forAllSystems (system: let
+      nixpkgs' = nixpkgs.legacyPackages.${system};
+      packages = self.packages.${system};
+    in {
+      default = packages.glibcLocales;
+      glibcLocales = nixpkgs'.callPackage ./package.nix {};
     });
 
-    defaultPackage = forAllSystems (system: self.packages.${system}.locale-en_se);
+    # probably not a good idea to use this but im not your mom
+    overlays.default = import ./overlay.nix;
+
+    nixosModules.default = import ./module.nix;
   };
 }

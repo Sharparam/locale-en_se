@@ -26,6 +26,10 @@
     in {
       default = packages.glibcLocales;
       glibcLocales = nixpkgs'.callPackage ./package.nix {};
+      glibcLocales-en_se = packages.glibcLocales.override {
+        allLocales = false;
+        locales = ["en_SE.UTF-8/UTF-8"];
+      };
     });
 
     # probably not a good idea to use this but im not your mom
